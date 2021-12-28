@@ -19,7 +19,7 @@ def fetch_spacex_launch(folder):
 
 
 if __name__ == '__main__':
-    folder = 'images/spacex'
+    folder = 'images'
     if not os.path.exists(folder):
         os.makedirs(folder)
     fetch_spacex_launch(folder)

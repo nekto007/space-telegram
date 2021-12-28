@@ -45,7 +45,7 @@ def fetch_nasa_epic_images(folder):
 
 
 if __name__ == '__main__':
-    folder = 'images/nasa'
+    folder = 'images'
     if not os.path.exists(folder):
         os.makedirs(folder)
     fetch_nasa_images(folder)
