@@ -20,8 +20,8 @@ def fetch_nasa_images(folder):
     for data in response.json():
         image_url = data['url']
         response = requests.get(image_url)
-        filename = split(image_url)[-1]
-        with open(folder + '/' + filename, 'wb') as file:
+        filename = os.path.basename(image_url)
+        with open(f'{folder}/{filename}', 'wb') as file:
             file.write(response.content)
 
 
@@ -35,18 +35,17 @@ def fetch_nasa_epic_images(folder):
         year = date.year
         month = date.month
         day = date.day
-        image = data["image"]
-        image_url = f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{image}.png'
+        image_name = data["image"]
+        image_url = f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{image_name}.png'
         parameters = {'api_key': settings.NASA_API_KEY}
         response = requests.get(image_url, params=parameters)
-        filename = split(image_url)[-1]
-        with open(folder + '/' + filename, 'wb') as file:
+        filename = os.path.basename(image_name)
+        with open(f'{folder}/{filename}', 'wb') as file:
             file.write(response.content)
 
 
 if __name__ == '__main__':
     folder = 'images'
-    if not os.path.exists(folder):
-        os.makedirs(folder)
+    os.makedirs(folder, exist_ok=True)
     fetch_nasa_images(folder)
     fetch_nasa_epic_images(folder)

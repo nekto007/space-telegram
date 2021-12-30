@@ -10,16 +10,15 @@ def fetch_spacex_launch(folder):
     url = 'https://api.spacexdata.com/v3/launches/101'
     response = requests.get(url, verify=False)
     response.raise_for_status()
-    url_images = response.json()
-    for number, url in enumerate(url_images['links']['flickr_images']):
+    images_url = response.json()
+    for number, url in enumerate(images_url['links']['flickr_images']):
         response = requests.get(url)
-        filename = 'spacex' + str(number)
-        with open(folder + '/' + filename + '.jpg', 'wb') as file:
+        filename = f'spacex{number}'
+        with open(f'{folder}/{filename}.jpg', 'wb') as file:
             file.write(response.content)
 
 
 if __name__ == '__main__':
     folder = 'images'
-    if not os.path.exists(folder):
-        os.makedirs(folder)
+    os.makedirs(folder, exist_ok=True)
     fetch_spacex_launch(folder)
