@@ -17,6 +17,26 @@ Python3 должен быть уже установлен. Затем испол
 pip install -r requirements.txt
 ```
 
+ЗАполните файл configs / settings.py на основе` settings.py.example`,
+затем добавьте свои ключи API и текущую монету. 
+
+**The configuration file consists of the following fields:**
+
+-   **NASA_API_KEY** - NASA API KEY. Требуется для получения фотографий с серверов Nasa
+-   **CHANNEL_ID** - ID Telegram канала. Параметр нужен для того, чтобы telegram bot знал в какой канал отправлять фотографии.
+-   **DELAY** - Задержка между публикациями фотографий в telegram канал. По умолчанию стоит 60 секунд.
+
+#### Environment Variables
+
+Все параметры, представленные в файле `config / settings.py`, также можно настроить с помощью переменных среды. 
+
+```
+NASA_API_KEY = 'WUtBdFbQRbu6e6b0Y8Mgkауа1g8vZZb7RHEPsD0'
+BOT_API_KEY = '181972ау2121:AAHS1jFSdvyuавыавzmtUbX4aRJzHj4qtKMDELFA'
+CHANNEL_ID = '-1003384007922'
+DELAY = 60
+```
+
 # Пример использования
 
 ### Для сбора фотографий
